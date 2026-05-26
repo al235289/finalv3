@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.A.M.E</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Spicy+Rice&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+   <div id="custom-cursor">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 20 L8 16 L18 6 C19 5 20 5 21 6 C22 7 22 8 21 9 L11 19 L7 21 Z" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1"/>
+        <path d="M8 16 L11 19" stroke="#B61919" stroke-width="1.5"/>
+        <ellipse cx="21" cy="6" rx="1.5" ry="1.5" fill="#B61919"/>
+      </svg>
+    </div>
+
+<main>
+
+    <!-- ================================================================
+         NAVBAR CUPHEAD CON LOGO
+         ================================================================ -->
+    <nav style="
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      background: rgba(255,253,249,0.92);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-bottom: 4px solid #1A1A1A;
+      box-shadow: 0 4px 0 #B61919;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 28px;
+      min-height: 68px;
+    ">
+      <!-- Franja roja punteada arriba -->
+      <div style="
+        position:absolute; top:0; left:0; right:0; height:5px;
+        background: repeating-linear-gradient(90deg, #B61919 0px, #B61919 18px, transparent 18px, transparent 28px);
+      "></div>
+
+      <!-- BRAND -->
+      <a href="#" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+        <div style="
+          width:48px; height:48px;
+          border:3px solid #1A1A1A;
+          border-radius:50%;
+          background:#F4EFE3;
+          display:flex; align-items:center; justify-content:center;
+          overflow:hidden;
+          box-shadow: 3px 3px 0 #1A1A1A;
+          animation: temblorTinta 1.2s steps(3) infinite;
+        ">
+          <img src="img/nion.png" alt="Logo C.A.M.E" style="width:34px; height:34px; object-fit:contain;">
+        </div>
+        <div style="line-height:1;">
+          <div style="
+            font-family:'Bungee',cursive;
+            font-size:22px;
+            letter-spacing:5px;
+            color:#1A1A1A;
+            text-transform:uppercase;
+            animation: temblorTinta 0.9s steps(3) infinite;
+            display:inline-block;
+          ">C.A.M.E</div>
+          <div style="
+            font-family:'Bungee',cursive;
+            font-size:8px;
+            letter-spacing:3px;
+            color:#B61919;
+            text-transform:uppercase;
+            margin-top:2px;
+          ">Centro · Acopio · Material · Estudiantil</div>
+        </div>
+        <span style="
+          font-family:'Bungee',cursive;
+          font-size:8px; letter-spacing:2px;
+          background:#B61919; color:white;
+          border:2px solid #1A1A1A; border-radius:4px;
+          padding:2px 6px;
+          animation: parpadeoAño 0.8s steps(1) infinite;
+          align-self:flex-start; margin-top:4px;
+        ">BETA</span>
+      </a>
+
+      <!-- Botón CTA (oculto por defecto, activar si se necesita) -->
+      <a href="incio_sesion.html" style="display:none;" id="navCta">▶ Ingresar</a>
+
+      <!-- Toggler mobile -->
+      <button id="navToggler" aria-label="Abrir menú" style="
+        display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+        width:44px; height:44px;
+        border:3px solid #1A1A1A; border-radius:8px;
+        background:#F4EFE3; box-shadow:3px 3px 0 #1A1A1A;
+        cursor:pointer;
+        display:none; 
+      "
+        onmouseover="this.style.background='#B61919'"
+        onmouseout="this.style.background='#F4EFE3'">
+        <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+        <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+        <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+      </button>
+
+      <!-- Frame counter navbar -->
+      <span style="
+        position:absolute; bottom:3px; right:14px;
+        font-family:'Bungee',cursive; font-size:7px; letter-spacing:2px;
+        color:#1A1A1A; opacity:0.18;
+        animation: parpadeoAño 0.5s steps(1) infinite;
+        pointer-events:none;
+      " id="navFrame">FRAME 001</span>
+    </nav>
+
+    <!-- Menú mobile desplegable -->
+    <div id="mobileNavMenu" style="
+      display:none;
+      position:fixed;
+      top:68px; left:0; right:0;
+      z-index:499;
+      background:#FFFDF9;
+      border-bottom:4px solid #1A1A1A;
+      box-shadow:0 6px 0 #B61919;
+      padding:16px 24px;
+      flex-direction:column;
+      gap:8px;
+    ">
+      <a href="incio_sesion.html" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">🏠 Inicio</a>
+      <a href="donar.html"        style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">📦 Donar</a>
+      <a href="foro.html"         style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">💬 Social</a>
+      <a href="https://alumnosuacj.sharepoint.com/sites/conectauacj" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">🎓 UACJ</a>
+      <a href="incio_sesion.html" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;background:#B61919;color:white;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">▶ Ingresar</a>
+    </div>
+
+<!------! =================================================================
+         CONTENIDO PRINCIPAL
+         ================================================================= -------->
+       <br>
+        <section class="principal">
+            <h1>¿Que vamos hacer hoy?</h1>
+        </section>
+        <br><br>
+
+        <section class="opciones">
+            
+            <a href="donar.html" class="enlace-opcion">
+                <div class="objeto-logo item-pincel"></div>
+                <div class="objeto-logo item-regla"></div>
+                <div class="objeto-logo item-compas"></div>
+                <div class="tarjeta-caja">
+                    <h2>DONAR</h2>
+                    <p>Crea una publicación</p>
+                    <img src="img/caja.png" alt="">
+                </div>
+            </a>
+
+            <a href="foro.html" class="enlace-opcion">
+                <div class="objeto-logo item-pincel"></div>
+                <div class="objeto-logo item-regla"></div>
+                <div class="objeto-logo item-compas"></div>
+                <div class="tarjeta-caja">
+                    <h2>SOCIAL</h2>
+                    <p>Ponte al tanto del dia</p>
+                    <img src="img/social.png" alt="">
+                </div>
+            </a>
+
+            <a href="https://alumnosuacj.sharepoint.com/sites/conectauacj" class="enlace-opcion">
+                <div class="objeto-logo item-pincel"></div>
+                <div class="objeto-logo item-regla"></div>
+                <div class="objeto-logo item-compas"></div>
+                <div class="tarjeta-caja">
+                    <h2>UACJ</h2>
+                    <p>Conecta con tu comunidad</p>
+                    <img src="img/conecta.png" alt="">
+                </div>
+            </a>
+
+        </section>
+    </main> 
+
+   <footer class="footer-cuphead">
+    <div class="footer-franja-decorativa"></div>
+    
+    <div class="footer-contenido">
+        <p class="footer-texto">¡Gracias por aportar a la comunidad!</p>
+        
+        <a href="index.html" class="btn-cerrar-sesion">
+            <span class="icono-salir">🚪</span> 
+            <span class="texto-salir">Cerrar Sesión</span>
+        </a>
+        
+        <p class="footer-derechos">© 1930-2026 C.A.M.E Studio · UACJ</p>
+    </div>
+</footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C.A.M.E — Donar</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Spicy+Rice&display=swap" rel="stylesheet">
+  <style>
+    /* ── Navbar responsive ── */
+    @media (max-width: 767px) {
+      #navLinks   { display: none !important; }
+      #navToggler { display: flex !important; }
+    }
+    @media (min-width: 768px) {
+      #navToggler    { display: none !important; }
+      #mobileNavMenu { display: none !important; }
+    }
+    #mobileNavMenu.nav-open { display: flex !important; }
+  </style>
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div id="custom-cursor">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 20 L8 16 L18 6 C19 5 20 5 21 6 C22 7 22 8 21 9 L11 19 L7 21 Z" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1"/>
+      <path d="M8 16 L11 19" stroke="#B61919" stroke-width="1.5"/>
+      <ellipse cx="21" cy="6" rx="1.5" ry="1.5" fill="#B61919"/>
+    </svg>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav style="
+    position:fixed; top:0; left:0; right:0; z-index:500;
+    background:rgba(255,253,249,0.92); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    border-bottom:4px solid #1A1A1A; box-shadow:0 4px 0 #B61919;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 28px; min-height:68px;
+  ">
+    <div style="position:absolute;top:0;left:0;right:0;height:5px;background:repeating-linear-gradient(90deg,#B61919 0px,#B61919 18px,transparent 18px,transparent 28px);"></div>
+
+    <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div style="width:48px;height:48px;border:3px solid #1A1A1A;border-radius:50%;background:#F4EFE3;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:3px 3px 0 #1A1A1A;animation:temblorTinta 1.2s steps(3) infinite;">
+        <img src="img/nion.png" alt="Logo C.A.M.E" style="width:34px;height:34px;object-fit:contain;">
+      </div>
+      <div style="line-height:1;">
+        <div style="font-family:'Bungee',cursive;font-size:22px;letter-spacing:5px;color:#1A1A1A;text-transform:uppercase;animation:temblorTinta 0.9s steps(3) infinite;display:inline-block;">C.A.M.E</div>
+        <div style="font-family:'Bungee',cursive;font-size:8px;letter-spacing:3px;color:#B61919;text-transform:uppercase;margin-top:2px;">Centro · Acopio · Material · Estudiantil</div>
+      </div>
+      <span style="font-family:'Bungee',cursive;font-size:8px;letter-spacing:2px;background:#B61919;color:white;border:2px solid #1A1A1A;border-radius:4px;padding:2px 6px;animation:parpadeoAño 0.8s steps(1) infinite;align-self:flex-start;margin-top:4px;">BETA</span>
+    </a>
+
+    <ul style="display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0;" id="navLinks">
+      <li><a href="home.html" style="font-family:'Bungee',cursive;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:8px 12px;border:2.5px solid transparent;border-radius:6px;display:flex;align-items:center;gap:5px;transition:all 0.1s;"
+        onmouseover="this.style.background='#F4EFE3';this.style.borderColor='#1A1A1A';this.style.boxShadow='3px 3px 0 #1A1A1A';this.style.color='#B61919';this.style.transform='translate(-1px,-1px)'"
+        onmouseout="this.style.background='';this.style.borderColor='transparent';this.style.boxShadow='';this.style.color='#1A1A1A';this.style.transform=''">🏠 Inicio</a></li>
+      <span style="color:#B61919;font-size:14px;animation:temblorTinta 1s steps(2) infinite;display:inline-block;">★</span>
+      <li><a href="donar.html" style="font-family:'Bungee',cursive;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#B61919;text-decoration:none;padding:8px 12px;border:2.5px solid #B61919;border-radius:6px;display:flex;align-items:center;gap:5px;background:#F4EFE3;box-shadow:3px 3px 0 #1A1A1A;">📦 Donar</a></li>
+      <span style="color:#B61919;font-size:14px;animation:temblorTinta 1.3s steps(2) infinite;display:inline-block;">★</span>
+      <li><a href="foro.html" style="font-family:'Bungee',cursive;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:8px 12px;border:2.5px solid transparent;border-radius:6px;display:flex;align-items:center;gap:5px;transition:all 0.1s;"
+        onmouseover="this.style.background='#F4EFE3';this.style.borderColor='#1A1A1A';this.style.boxShadow='3px 3px 0 #1A1A1A';this.style.color='#B61919';this.style.transform='translate(-1px,-1px)'"
+        onmouseout="this.style.background='';this.style.borderColor='transparent';this.style.boxShadow='';this.style.color='#1A1A1A';this.style.transform=''">💬 Social</a></li>
+      <span style="color:#B61919;font-size:14px;animation:temblorTinta 0.9s steps(2) infinite;display:inline-block;">★</span>
+      <li><a href="https://alumnosuacj.sharepoint.com/sites/conectauacj" style="font-family:'Bungee',cursive;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:8px 12px;border:2.5px solid transparent;border-radius:6px;display:flex;align-items:center;gap:5px;transition:all 0.1s;"
+        onmouseover="this.style.background='#F4EFE3';this.style.borderColor='#1A1A1A';this.style.boxShadow='3px 3px 0 #1A1A1A';this.style.color='#B61919';this.style.transform='translate(-1px,-1px)'"
+        onmouseout="this.style.background='';this.style.borderColor='transparent';this.style.boxShadow='';this.style.color='#1A1A1A';this.style.transform=''">🎓 UACJ</a></li>
+    </ul>
+
+    <button id="navToggler" aria-label="Abrir menú" aria-expanded="false" style="flex-direction:column;align-items:center;justify-content:center;gap:5px;width:44px;height:44px;border:3px solid #1A1A1A;border-radius:8px;background:#F4EFE3;box-shadow:3px 3px 0 #1A1A1A;cursor:pointer;"
+      onmouseover="this.style.background='#B61919'" onmouseout="this.style.background='#F4EFE3'">
+      <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+      <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+      <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+    </button>
+    <span style="position:absolute;bottom:3px;right:14px;font-family:'Bungee',cursive;font-size:7px;letter-spacing:2px;color:#1A1A1A;opacity:0.18;animation:parpadeoAño 0.5s steps(1) infinite;pointer-events:none;" id="navFrame">FRAME 001</span>
+  </nav>
+
+  <!-- MENÚ MOBILE -->
+  <div id="mobileNavMenu" style="display:none;position:fixed;top:68px;left:0;right:0;z-index:499;background:#FFFDF9;border-bottom:4px solid #1A1A1A;box-shadow:0 6px 0 #B61919;padding:16px 24px;flex-direction:column;gap:8px;">
+    <a href="home.html"  style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">🏠 Inicio</a>
+    <a href="donar.html" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#B61919;text-decoration:none;padding:12px 16px;border:2.5px solid #B61919;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">📦 Donar</a>
+    <a href="foro.html"  style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">💬 Social</a>
+    <a href="https://alumnosuacj.sharepoint.com/sites/conectauacj" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">🎓 UACJ</a>
+    <a href="incio_sesion.html" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;background:#B61919;color:white;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">▶ Ingresar</a>
+  </div>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="donar-main">
+
+    <!-- ENCABEZADO -->
+    <div class="donar-header">
+      <div>
+        <h1>Mis Donaciones</h1>
+        <p>Administra el material que has compartido con la comunidad</p>
+      </div>
+      <button id="btn-nueva-pub" class="btn-nueva-pub">＋ Nueva Publicación</button>
+    </div>
+
+    <!-- ESTADÍSTICAS RÁPIDAS -->
+    <div class="donar-stats">
+      <div class="stat-card">
+        <span class="stat-numero" id="stat-activos">1</span>
+        <span class="stat-label">Activos</span>
+      </div>
+      <div class="stat-card stat-card--rojo">
+        <span class="stat-numero">3</span>
+        <span class="stat-label">Interesados</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-numero">12</span>
+        <span class="stat-label">Visitas</span>
+      </div>
+    </div>
+
+    <!-- PESTAÑAS -->
+    <div class="donar-tabs">
+      <button class="tab-btn tab-activo" data-tab="activos">📦 Activos</button>
+      <button class="tab-btn" data-tab="historial">✅ Entregados</button>
+    </div>
+
+    <!-- PANEL: ACTIVOS -->
+    <div class="tab-panel" id="tab-activos">
+
+      <!-- Mensaje vacío (oculto si hay tarjetas) -->
+      <div class="donar-vacio" id="lista-vacia" style="display:none;">
+        <div class="donar-vacio-icono">📭</div>
+        <p class="donar-vacio-texto">Todavía no has publicado nada.</p>
+        <p class="donar-vacio-sub">¡Anímate a donar material y ayuda a otros estudiantes!</p>
+        <button class="btn-nueva-pub" id="btn-nueva-pub-vacio">＋ Publicar ahora</button>
+      </div>
+
+      <!-- LISTA DE TARJETAS DE GESTIÓN -->
+      <div class="gestion-lista" id="gestion-lista">
+
+        <!-- TARJETA 1 -->
+        <div class="tarjeta-gestion-nueva" data-id="1">
+          <div class="tg-imagen-wrap">
+            <img src="img/shopping.webp" alt="Libro de Física I" class="tg-imagen">
+            <span class="tg-badge tg-badge--gratis">GRATIS</span>
+          </div>
+          <div class="tg-info">
+            <div class="tg-info-top">
+              <h3 class="tg-titulo">Libro de Física I</h3>
+              <span class="tg-categoria">📚 Libros</span>
+            </div>
+            <p class="tg-descripcion">Buen estado, tiene marcas a lápiz. Disponible en campus.</p>
+            <div class="tg-meta">
+              <span class="tg-fecha">🕐 Publicado hace 3 días</span>
+              <span class="tg-vistas">👁 8 visitas</span>
+            </div>
+            <div class="tg-acciones">
+              <button class="tg-btn tg-btn--editar" data-id="1">✏️ Editar</button>
+              <button class="tg-btn tg-btn--entregar" data-id="1">✅ Marcar entregado</button>
+              <button class="tg-btn tg-btn--borrar btn-eliminar" data-id="1">🗑 Borrar</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /gestion-lista -->
+    </div><!-- /tab-activos -->
+
+    <!-- PANEL: HISTORIAL -->
+    <div class="tab-panel" id="tab-historial" style="display:none;">
+      <div class="historial-lista">
+
+        <div class="tarjeta-historial">
+          <div class="th-icono">✅</div>
+          <div class="th-info">
+            <h4>Apuntes de Cálculo I</h4>
+            <p>Entregado a <strong>@sofia_dgt</strong> · hace 2 semanas</p>
+          </div>
+          <span class="th-badge">Completado</span>
+        </div>
+
+        <div class="tarjeta-historial">
+          <div class="th-icono">✅</div>
+          <div class="th-info">
+            <h4>Set de colores profesionales</h4>
+            <p>Entregado a <strong>@carlos_uacj</strong> · hace 1 mes</p>
+          </div>
+          <span class="th-badge">Completado</span>
+        </div>
+
+      </div>
+    </div><!-- /tab-historial -->
+
+  </main><!-- /donar-main -->
+
+
+  <!-- ===================== MODAL: NUEVA PUBLICACIÓN ===================== -->
+  <div id="modal-donar" class="modal-fondo">
+    <div class="modal-donar-caja formulario-modal">
+      <div class="modal-donar-header">
+        <h2>Nueva Publicación</h2>
+        <button id="cerrar-modal" class="modal-close-btn" aria-label="Cerrar">✕</button>
+      </div>
+
+      <form id="form-donacion" class="formulario-crear">
+
+        <!-- Preview de imagen -->
+        <div class="grupo-input">
+          <label>Foto del material</label>
+          <div class="img-preview-area" id="img-preview-area">
+            <input type="file" id="foto" accept="image/*" class="img-file-input">
+            <div class="img-preview-placeholder" id="img-placeholder">
+              <span style="font-size:32px;">📷</span>
+              <span>Haz clic para subir una foto</span>
+            </div>
+            <img id="img-preview" src="" alt="preview" style="display:none;width:100%;height:180px;object-fit:cover;border-radius:4px;">
+          </div>
+        </div>
+
+        <div class="grupo-input">
+          <label for="titulo">Título del material</label>
+          <input type="text" id="titulo" placeholder="ej. Libro de Química II" required>
+        </div>
+
+        <div class="grupo-input">
+          <label for="categoria">Categoría</label>
+          <select id="categoria" required>
+            <option value="">Selecciona una categoría...</option>
+            <option value="libros">📚 Libros</option>
+            <option value="utiles">✏️ Útiles escolares</option>
+            <option value="apuntes">📄 Apuntes</option>
+            <option value="electronica">💻 Electrónica</option>
+            <option value="otro">📦 Otro</option>
+          </select>
+        </div>
+
+        <div class="grupo-input">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" rows="3" placeholder="Estado del material, dónde pasar a recogerlo, cómo contactarte..."></textarea>
+        </div>
+
+        <div class="seccion-venta">
+          <div class="grupo-input-checkbox">
+            <input type="checkbox" id="vender-check">
+            <label for="vender-check">¿Quieres vender este artículo?</label>
+          </div>
+          <div id="contenedor-precio" class="grupo-input" style="display:none;">
+            <label for="precio">Precio ($ MXN)</label>
+            <input type="number" id="precio" placeholder="ej. 150" min="1">
+          </div>
+        </div>
+
+        <button type="submit">★ Publicar ahora</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL: ÉXITO ===================== -->
+  <div id="modal-exito" class="modal-fondo">
+    <div class="anuncio-exito">
+      <div class="icono-check">✓</div>
+      <h2>¡Publicado!</h2>
+      <p>Tu material ya está visible para la comunidad C.A.M.E.</p>
+      <div class="opciones-post-publicacion">
+        <button id="btn-ver-publicacion" class="btn-comentar">Ver en el Feed</button>
+        <button id="btn-entendido" class="btn-principal-came">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-cuphead">
+    <div class="footer-franja-decorativa"></div>
+    <div class="footer-contenido">
+      <p class="footer-texto">¡Gracias por aportar a la comunidad!</p>
+      <a href="index.html" class="btn-cerrar-sesion">
+        <span class="icono-salir">🚪</span>
+        <span class="texto-salir">Cerrar Sesión</span>
+      </a>
+      <p class="footer-derechos">© 1930-2026 C.A.M.E Studio · UACJ</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* ── Navbar toggle mobile ── */
+    (function () {
+      const toggler = document.getElementById('navToggler');
+      const menu    = document.getElementById('mobileNavMenu');
+      if (!toggler || !menu) return;
+
+      toggler.addEventListener('click', function () {
+        const open = menu.classList.toggle('nav-open');
+        toggler.setAttribute('aria-expanded', open);
+      });
+
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('nav-open');
+          toggler.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

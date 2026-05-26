@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C.A.M.E</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Spicy+Rice&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <header class="parallax-header" id="parallaxHeader">
+
+      <!-- Capa 0: estrellas -->
+      <div class="parallax-stars" id="parallaxStars"></div>
+
+      <!-- Capa 1: nubes cartoon -->
+      <div class="parallax-nubes" id="parallaxNubes"></div>
+
+      <!-- Capa 2: canvas de partículas de tinta -->
+      <canvas id="canvas-tinta"></canvas>
+
+      <!-- Capa 3: título estilo película muda (z-index 3, DETRÁS del sándwich) -->
+      <div class="titulo-pelicula" id="tituloPelicula">
+        <div class="linea-decorativa">
+          <span></span>
+          <span class="estrella-deco">✦</span>
+          <span></span>
+        </div>
+        <h1>C.A.M.E</h1>
+        <div class="subtitulo">Centro · Acopio · Material · Estudiantil</div>
+        <div class="año-cine">UACJ · MMX X X V I · JUÁREZ</div>
+      </div>
+
+      <!-- Capa 4: el sándwich (z-index 5, ENCIMA del título) -->
+      <div class="contenedor-box" id="contenedorBox">
+        <div class="caja-fondo"></div>
+        <div class="item-pincel"></div>
+        <div class="item-regla"></div>
+        <div class="item-compas"></div>
+        <div class="caja-frente"></div>
+      </div>
+
+       <div id="custom-cursor">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 20 L8 16 L18 6 C19 5 20 5 21 6 C22 7 22 8 21 9 L11 19 L7 21 Z" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1"/>
+        <path d="M8 16 L11 19" stroke="#B61919" stroke-width="1.5"/>
+        <ellipse cx="21" cy="6" rx="1.5" ry="1.5" fill="#B61919"/>
+      </svg>
+    </div>
+
+      <!-- Capa 5: vigneteo y grain -->
+      <div class="parallax-vignette"></div>
+      <div class="parallax-grain"></div>
+
+      <!-- HUDs de esquina -->
+      <div class="frame-hud" id="frameHud">FRAME 001</div>
+      <div class="year-hud">© CAME 2026</div>
+
+      <!-- Flecha de scroll -->
+      <div class="scroll-hint" onclick="window.scrollTo({top: window.innerHeight, behavior:'smooth'})">
+        <span>Scroll</span>
+        <div class="arrow"></div>
+      </div>
+
+    </header>
+
+    <!-- ================================================================
+         SECCIÓN INFO
+         ================================================================ -->
+    <section class="seccion-info text-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10">
+            <h2 class="mb-4">¿Qué es C.A.M.E.?</h2>
+            <p class="mb-5">
+              La plataforma ideal para la comunidad universitaria de la UACJ. Aquí puedes intercambiar, vender o donar materiales académicos que ya no utilices, dándoles una segunda vida y apoyando la economía estudiantil de forma sostenible.
+            </p>
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+              <a href="incio_sesion.html" class="btn btn-primary btn-lg px-4 fw-semibold">
+                ▶ Iniciar Sesión
+              </a>
+              <a href="registro.html" class="btn btn-outline-secondary btn-lg px-4 fw-semibold">
+                + Crear una Cuenta
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         CARRUSEL
+         ================================================================ -->
+    <section class="py-5 bg-white border-top">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div id="carruselMateriales" class="carousel slide carousel-fade shadow-lg rounded-3 overflow-hidden" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carruselMateriales" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carruselMateriales" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carruselMateriales" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="4000">
+                  <img src="img/librerias.jpg" class="d-block w-100 carrusel-img" alt="Intercambio de Libros y Guías">
+                  <div class="carousel-caption d-none d-md-block fondo-caption rounded-3">
+                    <h5 class="fw-bold">Libros y Literatura</h5>
+                    <p>Encuentra o dona libros de texto, manuales de laboratorio y novelas académicas.</p>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="4000">
+                  <img src="img/material.jpg" class="d-block w-100 carrusel-img" alt="Materiales de Diseño y Arquitectura">
+                  <div class="carousel-caption d-none d-md-block fondo-caption rounded-3">
+                    <h5 class="fw-bold">Herramientas de Diseño</h5>
+                    <p>Reglas T, escuadras, estilógrafos y restiradores listos para una segunda vida.</p>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="4000">
+                  <img src="img/carrusel-comunidad.jpg" class="d-block w-100 carrusel-img" alt="Comunidad Universitaria UACJ">
+                  <div class="carousel-caption d-none d-md-block fondo-caption rounded-3">
+                    <h5 class="fw-bold">Apoyo entre Estudiantes</h5>
+                    <p>Reduce tus gastos semestrales reciclando materiales con compañeros de tu misma institución.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carruselMateriales" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carruselMateriales" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
+    <footer class="bg-dark text-white py-3 mt-auto" style="border-top: 4px solid #B61919;">
+      <div class="container">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+          <p class="mb-0 small text-secondary" style="font-family:'Bungee',cursive; letter-spacing:2px;">
+            &copy; 2026 C.A.M.E. — TODOS LOS DERECHOS RESERVADOS
+          </p>
+          <ul class="list-inline mb-0 small">
+            <li class="list-inline-item"><a href="foro.html" class="text-secondary text-decoration-none">Comunidad</a></li>
+            <li class="list-inline-item text-secondary">&middot;</li>
+            <li class="list-inline-item"><a href="#" class="text-secondary text-decoration-none">Soporte UACJ</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

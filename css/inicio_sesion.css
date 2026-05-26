@@ -1,0 +1,166 @@
+/* ==========================================================================
+   INICIO DE SESIÓN — estilos propios
+   El reset, variables, header, footer, navbar y animaciones
+   vienen de style.css (ya incluido en el HTML).
+   ========================================================================== */
+
+/* Empuja el contenido debajo del navbar fijo */
+main {
+  padding-top: 100px;
+}
+
+/* ==========================================================================
+   CARD DE LOGIN
+   ========================================================================== */
+.inicio-sesion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 28px;
+  background-color: var(--blanco-papel);
+  padding: 40px 30px;
+  border: 4px solid var(--negro-tinta);
+  box-shadow: 8px 8px 0px var(--negro-tinta);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.inicio-sesion h1 {
+  color: var(--negro-tinta);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-family: 'Bungee', cursive;
+  animation: temblorTinta 0.7s steps(3) infinite;
+  display: inline-block;
+}
+
+/* Separador entre los dos bloques */
+.inicio-sesion > div + div {
+  border-top: 3px dashed var(--negro-tinta);
+  padding-top: 24px;
+  width: 100%;
+}
+
+/* Formulario */
+.inicio-sesion form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Inputs estilo cómic */
+.inicio-sesion form input {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: var(--fondo-viejo);
+  border: 3px solid var(--negro-tinta);
+  border-radius: 8px;
+  outline: none;
+  color: var(--negro-tinta);
+}
+
+.inicio-sesion form input:focus {
+  background-color: #ffffff;
+  border-color: var(--rojo-cuphead);
+}
+
+/* Botón submit */
+.inicio-sesion form button[type="submit"] {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Bungee', cursive;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: var(--rojo-cuphead);
+  color: #ffffff;
+  border: 3px solid var(--negro-tinta);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0px var(--negro-tinta);
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.inicio-sesion form button[type="submit"]:hover {
+  background-color: var(--negro-tinta);
+  color: var(--fondo-viejo);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--negro-tinta);
+}
+
+/* "¿Olvidaste tu contraseña?" */
+.inicio-sesion form p {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--rojo-cuphead);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.inicio-sesion form p:hover {
+  color: var(--negro-tinta);
+}
+
+/* Link de registro */
+.inicio-sesion a {
+  font-family: 'Bungee', cursive;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rojo-cuphead);
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 3px solid var(--negro-tinta);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 var(--negro-tinta);
+  background-color: var(--fondo-viejo);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.inicio-sesion a:hover {
+  background-color: var(--rojo-cuphead);
+  color: #fff;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--negro-tinta);
+}
+
+/* ==========================================================================
+   RESPONSIVE — Mobile First
+   ========================================================================== */
+@media (min-width: 480px) {
+  .inicio-sesion {
+    padding: 44px 36px;
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-top: 110px;
+  }
+
+  .inicio-sesion {
+    padding: 50px 44px;
+    max-width: 520px;
+  }
+
+  .inicio-sesion h1 {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .inicio-sesion {
+    max-width: 560px;
+  }
+}

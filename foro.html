@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Spicy+Rice&display=swap" rel="stylesheet">
+  <title>C.A.M.E</title>
+  <style>
+    /* ── Navbar responsive ── */
+    @media (max-width: 767px) {
+      #navLinks    { display: none !important; }
+      #navToggler  { display: flex !important; }
+    }
+    @media (min-width: 768px) {
+      #navToggler      { display: none !important; }
+      #mobileNavMenu   { display: none !important; }
+    }
+    /* Estado abierto del menú mobile (clase añadida por JS) */
+    #mobileNavMenu.nav-open { display: flex !important; }
+  </style>
+</head>
+<body>
+
+  <!-- CURSOR PERSONALIZADO -->
+  <div id="custom-cursor">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 20 L8 16 L18 6 C19 5 20 5 21 6 C22 7 22 8 21 9 L11 19 L7 21 Z" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1"/>
+      <path d="M8 16 L11 19" stroke="#B61919" stroke-width="1.5"/>
+      <ellipse cx="21" cy="6" rx="1.5" ry="1.5" fill="#B61919"/>
+    </svg>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav style="
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    background: rgba(255,253,249,0.92); backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 4px solid #1A1A1A; box-shadow: 0 4px 0 #B61919;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 28px; min-height: 68px;
+  ">
+    <div style="position:absolute;top:0;left:0;right:0;height:5px;background:repeating-linear-gradient(90deg,#B61919 0px,#B61919 18px,transparent 18px,transparent 28px);"></div>
+
+    <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div style="width:48px;height:48px;border:3px solid #1A1A1A;border-radius:50%;background:#F4EFE3;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:3px 3px 0 #1A1A1A;animation:temblorTinta 1.2s steps(3) infinite;">
+        <img src="img/nion.png" alt="Logo C.A.M.E" style="width:34px;height:34px;object-fit:contain;">
+      </div>
+      <div style="line-height:1;">
+        <div style="font-family:'Bungee',cursive;font-size:22px;letter-spacing:5px;color:#1A1A1A;text-transform:uppercase;animation:temblorTinta 0.9s steps(3) infinite;display:inline-block;">C.A.M.E</div>
+        <div style="font-family:'Bungee',cursive;font-size:8px;letter-spacing:3px;color:#B61919;text-transform:uppercase;margin-top:2px;">Centro · Acopio · Material · Estudiantil</div>
+      </div>
+      <span style="font-family:'Bungee',cursive;font-size:8px;letter-spacing:2px;background:#B61919;color:white;border:2px solid #1A1A1A;border-radius:4px;padding:2px 6px;animation:parpadeoAño 0.8s steps(1) infinite;align-self:flex-start;margin-top:4px;">BETA</span>
+    </a>
+
+    <ul style="display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0;" id="navLinks">
+      <li><a href="home.html" style="font-family:'Bungee',cursive;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:8px 12px;border:2.5px solid transparent;border-radius:6px;display:flex;align-items:center;gap:5px;transition:all 0.1s;"
+        onmouseover="this.style.background='#F4EFE3';this.style.borderColor='#1A1A1A';this.style.boxShadow='3px 3px 0 #1A1A1A';this.style.color='#B61919';this.style.transform='translate(-1px,-1px)'"
+        onmouseout="this.style.background='';this.style.borderColor='transparent';this.style.boxShadow='';this.style.color='#1A1A1A';this.style.transform=''">🏠 Inicio</a></li>
+      <span style="color:#B61919;font-size:14px;animation:temblorTinta 1s steps(2) infinite;display:inline-block;">★</span>
+      <li><a href="donar.html" style="font-family:'Bungee',cursive;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:8px 12px;border:2.5px solid transparent;border-radius:6px;display:flex;align-items:center;gap:5px;transition:all 0.1s;"
+        onmouseover="this.style.background='#F4EFE3';this.style.borderColor='#1A1A1A';this.style.boxShadow='3px 3px 0 #1A1A1A';this.style.color='#B61919';this.style.transform='translate(-1px,-1px)'"
+        onmouseout="this.style.background='';this.style.borderColor='transparent';this.style.boxShadow='';this.style.color='#1A1A1A';this.style.transform=''">📦 Donar</a></li>
+      <span style="color:#B61919;font-size:14px;animation:temblorTinta 1.3s steps(2) infinite;display:inline-block;">★</span>
+      <li><a href="foro.html" style="font-family:'Bungee',cursive;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#B61919;text-decoration:none;padding:8px 12px;border:2.5px solid #B61919;border-radius:6px;display:flex;align-items:center;gap:5px;background:#F4EFE3;box-shadow:3px 3px 0 #1A1A1A;">💬 Social</a></li>
+      <span style="color:#B61919;font-size:14px;animation:temblorTinta 0.9s steps(2) infinite;display:inline-block;">★</span>
+      <li><a href="https://alumnosuacj.sharepoint.com/sites/conectauacj" style="font-family:'Bungee',cursive;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:8px 12px;border:2.5px solid transparent;border-radius:6px;display:flex;align-items:center;gap:5px;transition:all 0.1s;"
+        onmouseover="this.style.background='#F4EFE3';this.style.borderColor='#1A1A1A';this.style.boxShadow='3px 3px 0 #1A1A1A';this.style.color='#B61919';this.style.transform='translate(-1px,-1px)'"
+        onmouseout="this.style.background='';this.style.borderColor='transparent';this.style.boxShadow='';this.style.color='#1A1A1A';this.style.transform=''">🎓 UACJ</a></li>
+    </ul>
+
+    <button id="navToggler" aria-label="Abrir menú" aria-expanded="false" style="flex-direction:column;align-items:center;justify-content:center;gap:5px;width:44px;height:44px;border:3px solid #1A1A1A;border-radius:8px;background:#F4EFE3;box-shadow:3px 3px 0 #1A1A1A;cursor:pointer;"
+      onmouseover="this.style.background='#B61919'" onmouseout="this.style.background='#F4EFE3'">
+      <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+      <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+      <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+    </button>
+    <span style="position:absolute;bottom:3px;right:14px;font-family:'Bungee',cursive;font-size:7px;letter-spacing:2px;color:#1A1A1A;opacity:0.18;animation:parpadeoAño 0.5s steps(1) infinite;pointer-events:none;" id="navFrame">FRAME 001</span>
+  </nav>
+
+  <!-- MENÚ MOBILE -->
+  <div id="mobileNavMenu" style="display:none;position:fixed;top:68px;left:0;right:0;z-index:499;background:#FFFDF9;border-bottom:4px solid #1A1A1A;box-shadow:0 6px 0 #B61919;padding:16px 24px;flex-direction:column;gap:8px;">
+    <a href="home.html"  style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">🏠 Inicio</a>
+    <a href="donar.html" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">📦 Donar</a>
+    <a href="foro.html"  style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#B61919;text-decoration:none;padding:12px 16px;border:2.5px solid #B61919;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">💬 Social</a>
+    <a href="https://alumnosuacj.sharepoint.com/sites/conectauacj" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">🎓 UACJ</a>
+    <a href="incio_sesion.html" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;background:#B61919;color:white;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">▶ Ingresar</a>
+  </div>
+
+  <main class="foro-main">
+
+    <!-- ENCABEZADO DEL FEED -->
+    <div class="foro-header">
+      <div class="foro-header-texto">
+        <h1>Publicaciones</h1>
+        <p>Material disponible en la comunidad estudiantil</p>
+      </div>
+      <button class="btn-nueva-pub" id="btn-nueva-pub">
+        ＋ Nueva Publicación
+      </button>
+    </div>
+
+    <!-- FILTROS / CATEGORÍAS -->
+    <div class="foro-filtros">
+      <button class="filtro-btn filtro-activo" data-filtro="todo">Todo</button>
+      <button class="filtro-btn" data-filtro="libros">📚 Libros</button>
+      <button class="filtro-btn" data-filtro="utiles">✏️ Útiles</button>
+      <button class="filtro-btn" data-filtro="apuntes">📄 Apuntes</button>
+      <button class="filtro-btn" data-filtro="electronica">💻 Electrónica</button>
+    </div>
+
+    <!-- FEED DE PUBLICACIONES -->
+    <div class="feed-container">
+
+      <!-- TARJETA 1 -->
+      <article class="post-card" data-categoria="libros">
+        <div class="post-header">
+          <div class="post-avatar-wrap">
+            <img src="img/foto-de-perfil.png" alt="avatar" class="post-avatar">
+            <span class="post-avatar-badge">★</span>
+          </div>
+          <div class="post-meta">
+            <span class="post-username">@carlos_uacj</span>
+            <span class="post-time">hace 2 horas · <span class="post-categoria-tag">Libros</span></span>
+          </div>
+          <span class="post-estado post-estado--gratis">GRATIS</span>
+        </div>
+
+        <div class="post-imagen-wrap">
+          <img src="img/shopping.webp" alt="Libro de Química II" class="post-imagen">
+          <div class="post-imagen-overlay">
+            <span>Ver imagen completa</span>
+          </div>
+        </div>
+
+        <div class="post-body">
+          <h2 class="post-titulo">Libro de Química II</h2>
+          <p class="post-descripcion">En buen estado, tiene algunas notas a lápiz. Ideal para estudiantes de primer año. Paso en biblioteca o área 5.</p>
+          <div class="post-tags">
+            <span class="tag">#Química</span>
+            <span class="tag">#PrimerAño</span>
+            <span class="tag">#ICB</span>
+          </div>
+        </div>
+
+        <div class="post-footer">
+          <div class="post-acciones">
+            <button class="accion-btn btn-like" data-liked="false">
+              <span class="accion-icono">♡</span>
+              <span class="accion-count">24</span>
+            </button>
+            <button class="accion-btn btn-comentar">
+              <span class="accion-icono">💬</span>
+              <span class="accion-count">8</span>
+            </button>
+            <button class="accion-btn btn-compartir">
+              <span class="accion-icono">↗</span>
+              <span class="accion-count">Compartir</span>
+            </button>
+          </div>
+          <button class="btn-contactar">Contactar →</button>
+        </div>
+      </article>
+
+      <!-- TARJETA 2 -->
+      <article class="post-card" data-categoria="utiles">
+        <div class="post-header">
+          <div class="post-avatar-wrap">
+            <img src="img/foto-de-perfil.png" alt="avatar" class="post-avatar">
+          </div>
+          <div class="post-meta">
+            <span class="post-username">@maria_ing</span>
+            <span class="post-time">hace 5 horas · <span class="post-categoria-tag">Útiles</span></span>
+          </div>
+          <span class="post-estado post-estado--venta">$50</span>
+        </div>
+
+        <div class="post-imagen-wrap">
+          <img src="img/shopping.webp" alt="Set de geometría" class="post-imagen">
+          <div class="post-imagen-overlay">
+            <span>Ver imagen completa</span>
+          </div>
+        </div>
+
+        <div class="post-body">
+          <h2 class="post-titulo">Set de Geometría Completo</h2>
+          <p class="post-descripcion">Compás, regla, transportador y escuadras. Poco uso, casi nuevos. Vendo porque ya terminé el semestre.</p>
+          <div class="post-tags">
+            <span class="tag">#Geometría</span>
+            <span class="tag">#Útiles</span>
+            <span class="tag">#IADA</span>
+          </div>
+        </div>
+
+        <div class="post-footer">
+          <div class="post-acciones">
+            <button class="accion-btn btn-like" data-liked="false">
+              <span class="accion-icono">♡</span>
+              <span class="accion-count">11</span>
+            </button>
+            <button class="accion-btn btn-comentar">
+              <span class="accion-icono">💬</span>
+              <span class="accion-count">3</span>
+            </button>
+            <button class="accion-btn btn-compartir">
+              <span class="accion-icono">↗</span>
+              <span class="accion-count">Compartir</span>
+            </button>
+          </div>
+          <button class="btn-contactar">Contactar →</button>
+        </div>
+      </article>
+
+      <!-- TARJETA 3 -->
+      <article class="post-card" data-categoria="apuntes">
+        <div class="post-header">
+          <div class="post-avatar-wrap">
+            <img src="img/foto-de-perfil.png" alt="avatar" class="post-avatar">
+            <span class="post-avatar-badge">★</span>
+          </div>
+          <div class="post-meta">
+            <span class="post-username">@sofia_dgt</span>
+            <span class="post-time">ayer · <span class="post-categoria-tag">Apuntes</span></span>
+          </div>
+          <span class="post-estado post-estado--gratis">GRATIS</span>
+        </div>
+
+        <div class="post-imagen-wrap">
+          <img src="img/shopping.webp" alt="Apuntes de Cálculo" class="post-imagen">
+          <div class="post-imagen-overlay">
+            <span>Ver imagen completa</span>
+          </div>
+        </div>
+
+        <div class="post-body">
+          <h2 class="post-titulo">Apuntes de Cálculo Diferencial</h2>
+          <p class="post-descripcion">Cuaderno completo del semestre con ejercicios resueltos. Incluye todos los temas del examen final. Puedo escanear si quieren.</p>
+          <div class="post-tags">
+            <span class="tag">#Cálculo</span>
+            <span class="tag">#Matemáticas</span>
+            <span class="tag">#ICB</span>
+          </div>
+        </div>
+
+        <div class="post-footer">
+          <div class="post-acciones">
+            <button class="accion-btn btn-like" data-liked="false">
+              <span class="accion-icono">♡</span>
+              <span class="accion-count">47</span>
+            </button>
+            <button class="accion-btn btn-comentar">
+              <span class="accion-icono">💬</span>
+              <span class="accion-count">15</span>
+            </button>
+            <button class="accion-btn btn-compartir">
+              <span class="accion-icono">↗</span>
+              <span class="accion-count">Compartir</span>
+            </button>
+          </div>
+          <button class="btn-contactar">Contactar →</button>
+        </div>
+      </article>
+
+      <!-- TARJETA 4 -->
+      <article class="post-card" data-categoria="electronica">
+        <div class="post-header">
+          <div class="post-avatar-wrap">
+            <img src="img/foto-de-perfil.png" alt="avatar" class="post-avatar">
+          </div>
+          <div class="post-meta">
+            <span class="post-username">@luis_sistemas</span>
+            <span class="post-time">hace 2 días · <span class="post-categoria-tag">Electrónica</span></span>
+          </div>
+          <span class="post-estado post-estado--venta">$200</span>
+        </div>
+
+        <div class="post-imagen-wrap">
+          <img src="img/shopping.webp" alt="Calculadora científica" class="post-imagen">
+          <div class="post-imagen-overlay">
+            <span>Ver imagen completa</span>
+          </div>
+        </div>
+
+        <div class="post-body">
+          <h2 class="post-titulo">Calculadora Científica Casio fx-991</h2>
+          <p class="post-descripcion">Con manual y estuche original. Funciona perfecto. Ya no la necesito, cambié de carrera. Negociable.</p>
+          <div class="post-tags">
+            <span class="tag">#Calculadora</span>
+            <span class="tag">#Casio</span>
+            <span class="tag">#Ingeniería</span>
+          </div>
+        </div>
+
+        <div class="post-footer">
+          <div class="post-acciones">
+            <button class="accion-btn btn-like" data-liked="false">
+              <span class="accion-icono">♡</span>
+              <span class="accion-count">9</span>
+            </button>
+            <button class="accion-btn btn-comentar">
+              <span class="accion-icono">💬</span>
+              <span class="accion-count">2</span>
+            </button>
+            <button class="accion-btn btn-compartir">
+              <span class="accion-icono">↗</span>
+              <span class="accion-count">Compartir</span>
+            </button>
+          </div>
+          <button class="btn-contactar">Contactar →</button>
+        </div>
+      </article>
+
+    </div><!-- /feed-container -->
+  </main>
+
+  <!-- MODAL: NUEVA PUBLICACIÓN -->
+  <div id="modal-donar" class="modal-fondo">
+    <div class="formulario-modal">
+      <span class="x-cerrar" id="cerrar-modal">✕</span>
+      <h2 style="margin-bottom:20px;">Nueva Publicación</h2>
+      <form class="formulario-crear" id="form-donacion">
+        <div>
+          <label for="titulo-pub">Título del material</label>
+          <input type="text" id="titulo-pub" placeholder="ej. Libro de Física III" required>
+        </div>
+        <div>
+          <label for="categoria-pub">Categoría</label>
+          <select id="categoria-pub" required>
+            <option value="">Selecciona una categoría</option>
+            <option>Libros</option>
+            <option>Útiles</option>
+            <option>Apuntes</option>
+            <option>Electrónica</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div>
+          <label for="desc-pub">Descripción</label>
+          <textarea id="desc-pub" rows="3" placeholder="Estado, detalles, cómo contactar..."></textarea>
+        </div>
+        <div>
+          <label for="foto-pub">Foto del material</label>
+          <input type="file" id="foto-pub" accept="image/*">
+        </div>
+        <div class="grupo-input-checkbox">
+          <input type="checkbox" id="vender-check">
+          <label for="vender-check">¿Lo vendes?</label>
+        </div>
+        <div id="contenedor-precio" style="display:none;">
+          <label for="precio">Precio (MXN)</label>
+          <input type="number" id="precio" placeholder="ej. 150">
+        </div>
+        <button type="submit">Publicar ★</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL ÉXITO -->
+  <div id="modal-exito" class="modal-fondo">
+    <div class="anuncio-exito">
+      <div class="icono-check">✓</div>
+      <h2>¡Publicado!</h2>
+      <p>Tu material ya está visible para la comunidad C.A.M.E.</p>
+      <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-comentar" id="btn-entendido">Aceptar</button>
+        <button class="btn-comentar" id="btn-ver-publicacion">Ver en el feed</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-cuphead">
+    <div class="footer-franja-decorativa"></div>
+    <div class="footer-contenido">
+      <p class="footer-texto">¡Gracias por aportar a la comunidad!</p>
+      <a href="index.html" class="btn-cerrar-sesion">
+        <span class="icono-salir">🚪</span>
+        <span class="texto-salir">Cerrar Sesión</span>
+      </a>
+      <p class="footer-derechos">© 1930-2026 C.A.M.E Studio · UACJ</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* ── Navbar toggle mobile ── */
+    (function () {
+      const toggler = document.getElementById('navToggler');
+      const menu    = document.getElementById('mobileNavMenu');
+      if (!toggler || !menu) return;
+
+      toggler.addEventListener('click', function () {
+        const open = menu.classList.toggle('nav-open');
+        toggler.setAttribute('aria-expanded', open);
+      });
+
+      /* Cerrar al hacer clic en un enlace del menú mobile */
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.remove('nav-open');
+          toggler.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

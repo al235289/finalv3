@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C.A.M.E — Registro</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/inicio_sesion.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Spicy+Rice&display=swap" rel="stylesheet">
+  <style>
+    /* ── Navbar responsive ── */
+    @media (max-width: 767px) {
+      #navLinks   { display: none !important; }
+      #navToggler { display: flex !important; }
+    }
+    @media (min-width: 768px) {
+      #navToggler    { display: none !important; }
+      #mobileNavMenu { display: none !important; }
+    }
+    #mobileNavMenu.nav-open { display: flex !important; }
+
+    /* ── Modal fondo ── */
+    .modal-fondo {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(26, 26, 26, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* ── Modal caja ── */
+    .modal-caja {
+      background: #FFFDF9;
+      border: 4px solid #1A1A1A;
+      border-radius: 16px;
+      box-shadow: 8px 8px 0 #1A1A1A, 12px 12px 0 #B61919;
+      padding: 40px 36px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      animation: modalEntrada 0.25s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes modalEntrada {
+      from { transform: scale(0.85) translateY(20px); opacity: 0; }
+      to   { transform: scale(1)    translateY(0);    opacity: 1; }
+    }
+    .modal-caja h2 {
+      font-family: 'Bungee', cursive;
+      font-size: 26px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #1A1A1A;
+      margin: 0 0 8px;
+    }
+    .modal-caja p {
+      font-family: 'Bungee', cursive;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: #555;
+      margin: 0 0 28px;
+      text-transform: uppercase;
+    }
+
+    /* ── Inputs OTP ── */
+    .codigo-contenedor {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .codigo-input {
+      width: 56px;
+      height: 64px;
+      border: 3px solid #1A1A1A;
+      border-radius: 10px;
+      background: #F4EFE3;
+      box-shadow: 4px 4px 0 #1A1A1A;
+      font-family: 'Bungee', cursive;
+      font-size: 28px;
+      text-align: center;
+      color: #1A1A1A;
+      outline: none;
+      transition: border-color 0.1s, box-shadow 0.1s, transform 0.1s;
+    }
+    .codigo-input:focus {
+      border-color: #B61919;
+      box-shadow: 4px 4px 0 #B61919;
+      transform: translate(-2px, -2px);
+    }
+
+    /* ── Botón del modal ── */
+    .modal-caja button[type="submit"] {
+      font-family: 'Bungee', cursive;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: #B61919;
+      color: #fff;
+      border: 3px solid #1A1A1A;
+      border-radius: 10px;
+      padding: 14px 32px;
+      box-shadow: 4px 4px 0 #1A1A1A;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .modal-caja button[type="submit"]:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 #1A1A1A;
+    }
+    .modal-caja button[type="submit"]:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 #1A1A1A;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div id="custom-cursor">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 20 L8 16 L18 6 C19 5 20 5 21 6 C22 7 22 8 21 9 L11 19 L7 21 Z" fill="#1A1A1A" stroke="#1A1A1A" stroke-width="1"/>
+      <path d="M8 16 L11 19" stroke="#B61919" stroke-width="1.5"/>
+      <ellipse cx="21" cy="6" rx="1.5" ry="1.5" fill="#B61919"/>
+    </svg>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav style="
+    position:fixed; top:0; left:0; right:0; z-index:500;
+    background:rgba(255,253,249,0.92); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    border-bottom:4px solid #1A1A1A; box-shadow:0 4px 0 #B61919;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 28px; min-height:68px;
+  ">
+    <div style="position:absolute;top:0;left:0;right:0;height:5px;background:repeating-linear-gradient(90deg,#B61919 0px,#B61919 18px,transparent 18px,transparent 28px);"></div>
+
+    <a href="#" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div style="width:48px;height:48px;border:3px solid #1A1A1A;border-radius:50%;background:#F4EFE3;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:3px 3px 0 #1A1A1A;animation:temblorTinta 1.2s steps(3) infinite;">
+        <img src="img/nion.png" alt="Logo C.A.M.E" style="width:34px;height:34px;object-fit:contain;">
+      </div>
+      <div style="line-height:1;">
+        <div style="font-family:'Bungee',cursive;font-size:22px;letter-spacing:5px;color:#1A1A1A;text-transform:uppercase;animation:temblorTinta 0.9s steps(3) infinite;display:inline-block;">C.A.M.E</div>
+        <div style="font-family:'Bungee',cursive;font-size:8px;letter-spacing:3px;color:#B61919;text-transform:uppercase;margin-top:2px;">Centro · Acopio · Material · Estudiantil</div>
+      </div>
+      <span style="font-family:'Bungee',cursive;font-size:8px;letter-spacing:2px;background:#B61919;color:white;border:2px solid #1A1A1A;border-radius:4px;padding:2px 6px;animation:parpadeoAño 0.8s steps(1) infinite;align-self:flex-start;margin-top:4px;">BETA</span>
+    </a>
+
+    <button id="navToggler" aria-label="Abrir menú" aria-expanded="false" style="flex-direction:column;align-items:center;justify-content:center;gap:5px;width:44px;height:44px;border:3px solid #1A1A1A;border-radius:8px;background:#F4EFE3;box-shadow:3px 3px 0 #1A1A1A;cursor:pointer;"
+      onmouseover="this.style.background='#B61919'" onmouseout="this.style.background='#F4EFE3'">
+      <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+      <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+      <span style="display:block;width:22px;height:3px;background:#1A1A1A;border-radius:2px;"></span>
+    </button>
+    <span style="position:absolute;bottom:3px;right:14px;font-family:'Bungee',cursive;font-size:7px;letter-spacing:2px;color:#1A1A1A;opacity:0.18;animation:parpadeoAño 0.5s steps(1) infinite;pointer-events:none;">FRAME 001</span>
+  </nav>
+
+  <!-- MENÚ MOBILE -->
+  <div id="mobileNavMenu" style="display:none;position:fixed;top:68px;left:0;right:0;z-index:499;background:#FFFDF9;border-bottom:4px solid #1A1A1A;box-shadow:0 6px 0 #B61919;padding:16px 24px;flex-direction:column;gap:8px;">
+    <a href="home.html"  style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">🏠 Inicio</a>
+    <a href="donar.html" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">📦 Donar</a>
+    <a href="foro.html"  style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">💬 Social</a>
+    <a href="https://alumnosuacj.sharepoint.com/sites/conectauacj" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#1A1A1A;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">🎓 UACJ</a>
+    <a href="incio_sesion.html" style="font-family:'Bungee',cursive;font-size:15px;letter-spacing:2px;text-transform:uppercase;background:#B61919;color:white;text-decoration:none;padding:12px 16px;border:2.5px solid #1A1A1A;border-radius:8px;box-shadow:3px 3px 0 #1A1A1A;display:flex;align-items:center;gap:10px;">▶ Ingresar</a>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+    <div class="inicio-sesion">
+      <h1>Crear Cuenta</h1>
+      <form onsubmit="redirigirALogin(event)">
+        <input type="text" name="username" placeholder="Nombre y Apellido" required>
+        <input
+          type="email"
+          name="email"
+          placeholder="Correo Institucional"
+          pattern="^[a-zA-Z0-9._%+\-]+@alumnos\.uacj\.mx$"
+          title="Por favor, usa tu correo institucional que termina en @alumnos.uacj.mx"
+          required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Registrar</button>
+      </form>
+      <a href="incio_sesion.html">Ya tengo una cuenta</a>
+    </div>
+  </main>
+
+  <!-- MODAL: VERIFICACIÓN DE CORREO -->
+  <div id="ventana-verificacion" class="modal-fondo" style="display:none;">
+    <div class="modal-caja">
+      <h2>Verificar Correo</h2>
+      <p>Ingresa el código que enviamos a tu bandeja.</p>
+      <form onsubmit="verificarCodigo(event)">
+        <div class="codigo-contenedor">
+          <input type="text" class="codigo-input" maxlength="1" pattern="\d*" inputmode="numeric">
+          <input type="text" class="codigo-input" maxlength="1" pattern="\d*" inputmode="numeric">
+          <input type="text" class="codigo-input" maxlength="1" pattern="\d*" inputmode="numeric">
+          <input type="text" class="codigo-input" maxlength="1" pattern="\d*" inputmode="numeric">
+        </div>
+        <button type="submit">Validar Código</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer-cuphead">
+    <div class="footer-franja-decorativa"></div>
+    <div class="footer-contenido">
+      <p class="footer-texto">Centro · Acopio · Material · Estudiantil</p>
+      <p class="footer-derechos">© 1930-2026 C.A.M.E Studio · UACJ</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/main.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyDf7ao3ktug_iU70CCaZeVi82RBSw62Zqw",
+      authDomain: "came-8cbf2.firebaseapp.com",
+      projectId: "came-8cbf2",
+      storageBucket: "came-8cbf2.firebasestorage.app",
+      messagingSenderId: "955648360261",
+      appId: "1:955648360261:web:e308ec5abc4b880565882c"
+    };
+    const app = initializeApp(firebaseConfig);
+  </script>
+</body>
+</html>
